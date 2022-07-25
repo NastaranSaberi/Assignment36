@@ -1,0 +1,84 @@
+<?php
+
+session_start();
+
+$request = $_SERVER["REQUEST_URI"];
+$request = str_replace("/SocialNetwork", "", $request);
+
+
+switch ($request)
+{
+    case ("/"):
+    case ("/index"):
+    case ("/index.php"):
+    case ("index"):
+        require "Controller/index.php";
+        break;
+
+    case ("/home.php/"):
+    case ("/home.php"):
+    case("/home"):
+    case ("/home"):
+
+        if($_SESSION["login_status"] == true)
+        {
+            require "Controller/home.php";
+            break;
+        }
+        else
+        {
+            require "Controller/index.php";
+            break;        
+         
+        }
+      
+
+    case ("/profile.php/"):
+    case ("/profile.php"):
+    case("/profile"):
+        require "Controller/profile.php";
+        break;
+
+    case ("/register.php/"):
+    case ("/register.php"):
+    case("/register"):
+        require "Controller/register.php";
+        break;
+
+    case ("/register_process.php/"):
+    case ("/register_process.php"):
+    case("/register_process"):
+        require "Controller/register_process.php";
+        break;
+
+    case ("/login_process.php/"):
+    case ("/login_process.php"):
+    case("/login_process"):
+        require "Controller/login_process.php";
+        break;
+
+    case ("/post_process.php/"):
+    case ("/post_process.php"):
+    case("/post_process"):
+        require "Controller/post_process.php";
+        break;
+
+    case ("/add_comment.php/"):
+    case ("/add_comment.php"):
+    case("/add_comment"):
+        require "Controller/add_comment.php";
+        break;
+
+    case ("/logout_process.php/"):
+    case ("/logout_process.php"):
+    case ("/logout_process"):
+        require "Controller/logout_process.php";
+        break;
+
+        
+    default:
+        require "Controller/404.php";
+        break;
+}
+
+?>
